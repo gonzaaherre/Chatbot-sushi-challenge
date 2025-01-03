@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: chatbot_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - chatbot_network
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: chatbot_mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+    networks:
+      - chatbot_network
+
+volumes:
+  mongo_data:
+networks:
+  chatbot_network:
+    driver: bridge
