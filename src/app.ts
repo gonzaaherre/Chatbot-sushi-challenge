@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import connectDB from "./config/dbClient";
 import faqRoutes from "./routes/FAQ-routes";
+import productRoutes from "./routes/product-route";
 
 dotenv.config();
 
@@ -23,5 +24,6 @@ connectDB();
 //middleware para parsear el cuerpo de las peticiones
 app.use(express.json());
 app.use("/api", faqRoutes);
+app.use("/api", productRoutes);
 
 export default app;

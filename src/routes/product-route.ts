@@ -1,12 +1,35 @@
-/*import { Router } from "express";
-import { getProducts, createProduct } from "../controllers/productController";
+import { Router } from "express";
+import { ProductController } from "../controllers/product-controller";
+import { body } from "express-validator";
+import { validate } from "../middleware/validate";
 
 const router = Router();
+const productController = new ProductController();
 
-// Rutas para el menú
-router.get("/", getProducts);
-router.post("/", createProduct);
-router.put("/", createProduct);
+// Obtener todos los productos
+router.get(
+  "/menu",
+  productController.getAllProductItems.bind(productController)
+);
+
+// Obtener un producto por nombre
+
+//crear un nuevo producto del menú
+router.post(
+  "/menu",
+  body("name").isString().notEmpty().withMessage("El nombre es obligatorio"),
+  body("description")
+    .isString()
+    .notEmpty()
+    .withMessage("La descripción es obligatoria"),
+  body("price")
+    .isFloat({ gt: 0 })
+    .withMessage("El precio debe ser un número positivo"),
+  body("category")
+    .isString()
+    .notEmpty()
+    .withMessage("La categoría es obligatoria"),
+  productController.createMenuItem.bind(productController)
+);
 
 export default router;
-*/

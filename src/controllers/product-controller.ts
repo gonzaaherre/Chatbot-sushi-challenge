@@ -1,7 +1,6 @@
-// src/controllers/ProductController.ts
 import { Request, Response } from "express";
 import { ProductService } from "../services/product-service";
-import { ProductCreateDTO } from "../DTOs/product/createProductDto"; // Importamos el DTO para usarlo
+import { CreateProductItemDTO } from "../DTOs/product/createProductDto";
 
 export class ProductController {
   private productService: ProductService;
@@ -9,16 +8,41 @@ export class ProductController {
   constructor() {
     this.productService = new ProductService();
   }
-
-  // Método para crear un producto
-  async createProduct(req: Request, res: Response) {
-    const productData: ProductCreateDTO = req.body; // Usamos el DTO para tipar la entrada
-
+  async getAllProductItems(req: Request, res: Response) {
     try {
-      const newProduct = await this.productService.createProduct(productData);
-      res.status(201).json(newProduct); // Devolvemos el producto creado
+      const products = await this.productService.getAllProductItems();
+      res.status(200).json(products);
     } catch (error) {
-      res.status(500).json({ error: "Error al crear el producto" });
+      res
+        .status(500)
+        .json({ error: "Error al obtener los productos del menú" });
+    }
+  }
+
+  async getMenuItemByName(req: Request, res: Response) {
+    try {
+      const { name } = req.params;
+      const product = await this.productService.getMenuItemByName(name);
+
+      if (!product) {
+        return res.status(404).json({ error: "Producto no encontrado" });
+      }
+
+      return res.status(200).json(product);
+    } catch (error) {
+      console.error("[ProductController] - Error en getMenuItemByName:", error);
+      res.status(500).json({ error: "Error al buscar el producto" });
+    }
+  }
+
+  // Crear un nuevo producto del menú
+  async createMenuItem(req: Request, res: Response) {
+    const productData: CreateProductItemDTO = req.body;
+    try {
+      const newProduct = await this.productService.createMenuItem(productData);
+      res.status(201).json(newProduct);
+    } catch (error) {
+      res.status(500).json({ error: "Error al crear el producto del menú" });
     }
   }
 }
