@@ -2,14 +2,15 @@ import mongoose from "mongoose";
 import FAQ from "../models/faq-model";
 import order from "../models/order-model";
 import connectDB from "../config/dbClient";
+import product from "../models/product-model";
 
 const seedFAQs = async () => {
   FAQ.deleteMany({}).then(() => {
     console.log("Se eliminaron las preguntas frecuentes anteriores");
   });
 
-  order.deleteMany({}).then(() => {
-    console.log("Se eliminaron los pedidos anteriores");
+  product.deleteMany({}).then(() => {
+    console.log("Se eliminaron los productos anteriores");
   });
 
   const faqs = [
@@ -91,7 +92,8 @@ const seedFAQs = async () => {
   try {
     await connectDB();
     await FAQ.insertMany(faqs);
-    await order.insertMany(products);
+    await product.insertMany(products);
+    await seedOrders();
     console.log("Menu and FAQs seeded successfully!");
   } catch (error) {
     console.error("Error seeding FAQ or menu:", error);
@@ -99,5 +101,37 @@ const seedFAQs = async () => {
     mongoose.connection.close();
   }
 };
+
+async function seedOrders() {
+  try {
+    // Obtener productos existentes
+    const products = await product.find();
+    // Crear órdenes con productos aleatorios
+    const ordersData = [
+      {
+        products: [
+          { product: products[0]._id, quantity: 2 },
+          { product: products[1]._id, quantity: 1 },
+        ],
+        totalPrice: products[0].price * 2 + products[1].price * 1,
+        status: "pending",
+      },
+      {
+        products: [{ product: products[1]._id, quantity: 3 }],
+        totalPrice: products[1].price * 3,
+        status: "completed",
+      },
+    ];
+    // Limpiar órdenes existentes
+    await order.deleteMany({});
+    console.log("Órdenes existentes eliminadas.");
+
+    // Insertar nuevas órdenes
+    const createdOrders = await order.insertMany(ordersData);
+    console.log(`Órdenes creadas: ${createdOrders.length}`);
+  } catch (error) {
+    console.error("Error al sembrar las órdenes:", error);
+  }
+}
 
 seedFAQs();

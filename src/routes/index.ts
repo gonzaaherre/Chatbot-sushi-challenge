@@ -1,10 +1,12 @@
 import { Router } from "express";
-import productRoutes from "./FAQ-routes";
+import productRoutes from "./product-route";
 import faqRoutes from "./FAQ-routes";
+import orderRoutes from "./order-routes";
 
 const router = Router();
 
-router.use("/api", faqRoutes);
-router.use("/api", productRoutes);
+router.use(faqRoutes);
+router.use(productRoutes);
+router.use(orderRoutes);
 
 export default router;
