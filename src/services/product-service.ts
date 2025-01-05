@@ -5,7 +5,9 @@ export class ProductService {
   async getAllProductItems() {
     try {
       console.info(" consulta de todos los productos en el service");
-      const items = await ProductItem.find();
+      const items = await ProductItem.find().select(
+        "name description price -_id"
+      );
 
       if (!items || items.length === 0) {
         console.warn("no se encontraron productos en el menú");
