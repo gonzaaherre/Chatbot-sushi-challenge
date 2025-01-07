@@ -2,11 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/dbClient";
 import routes from "./routes/index";
+import cors = require("cors");
 
 dotenv.config();
 
 const app = express();
 //levantamos el servidor
+app.use(cors());
 try {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {

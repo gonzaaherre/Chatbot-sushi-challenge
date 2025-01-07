@@ -16,9 +16,11 @@ export class FAQService {
     try {
       //(ignora mayúsculas/minúsculas)
       console.log("Palabra clave: ", keyword);
-
+      //descompone los caracteres con tilde en su forma base y elimina la tilde
+      const normalizedKeyword = keyword.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      console.log("Palabra clave normalizada: ", normalizedKeyword);
       const faq = await FAQ.findOne({
-        question: new RegExp(keyword, "i"),
+        question: new RegExp(normalizedKeyword, "i"),
       }).select("question answer -_id");
 
       if (!faq) {
