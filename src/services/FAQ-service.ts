@@ -35,13 +35,14 @@ export class FAQService {
   // }
   async getFAQByKeywords(keywords: string) {
     try {
-      let long = 2;
+      let long = 3;
       console.log("Palabras clave originales:", keywords);
   
       const normalizedKeywords = keywords
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "") //normalizar y eliminar tildes
         .toLowerCase()
+        .replace(/[\?\s]+/g, " ") // Reemplazar signos de interrogación y espacios por un solo espacio
         .split(/\s+/); //dividir por espacios
 
       if(normalizedKeywords.length === 1){
@@ -60,7 +61,7 @@ export class FAQService {
         const matches = normalizedKeywords.filter((keyword) =>
           normalizedQuestion.includes(keyword)
         );
-        return matches.length >= long; //i hay al menos 2 coincidencias
+        return matches.length >= long; //si hay al menos 2 coincidencias
       });
   
       if (matchingFAQs.length === 0) {
