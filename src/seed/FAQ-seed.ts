@@ -15,20 +15,20 @@ const seedFAQs = async () => {
 
   const faqs = [
     {
-      question: "¿Qué tipos de sushi ofrecemos?",
+      question: "¿Qué tipos de sushi ofrecen tienen?",
       answer: "Ofrecemos sushi tradicional, makis, nigiris y más.",
     },
     {
-      question: "¿Cuáles son los horarios de apertura?",
+      question: "¿Cuáles son los horarios del local abiertos abierto?",
       answer: "Estamos abiertos todos los días de 10:00 AM a 10:00 PM.",
     },
     {
-      question: "¿Puedo hacer un pedido en línea?",
+      question: "¿Puedo hacer un pedido en línea online?",
       answer:
         "Sí, puedes hacer pedidos en línea a través de nuestra página web.",
     },
     {
-      question: "¿Tienen opciones vegetarianas?",
+      question: "¿Tienen opciones para vegetarianos?",
       answer: "Sí, ofrecemos opciones vegetarianas y veganas.",
     },
     {
@@ -36,7 +36,7 @@ const seedFAQs = async () => {
       answer: "Sí, ofrecemos servicio de entrega a domicilio en varias zonas.",
     },
     {
-      question: "¿Cuánto tarda la entrega?",
+      question: "¿Cuánto tarda tardan la entrega?",
       answer:
         "El tiempo de entrega varía entre 30 a 45 minutos, dependiendo de la zona.",
     },
