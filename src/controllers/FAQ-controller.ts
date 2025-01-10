@@ -33,28 +33,28 @@ export class FAQController {
   //   }
   //}
 
-  async getFAQByKeywordController(req: Request, res: Response,next: NextFunction): Promise<Response> {
+  async getFAQByKeywordController(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const { keywords } = req.body;
 
-  try {
-    if (!keywords) {
-      return res.status(400).json({ message: "Las palabras clave son requeridas." });
-    }
+    try {
+      if (!keywords) {
+        return res.status(400).json({ message: "Las palabras clave son requeridas." });
+      }
 
-    console.log("Palabras clave recibidas:", keywords);
-    const faqs = await this.faqService.getFAQByKeywords(keywords);
+      console.log("Palabras clave recibidas:", keywords);
+      const faqs = await this.faqService.getFAQByKeywords(keywords);
 
-    if (faqs.length > 0) {
-      return res.status(200).json(faqs);
-    } else {
-      return res.status(404).json({ message: "No se encontraron FAQs relacionadas." });
+      if (faqs.length > 0) {
+        return res.status(200).json(faqs);
+      } else {
+        return res.status(404).json({ message: "No se encontraron FAQs relacionadas." });
+      }
+    } catch (error) {
+      console.error("Error al buscar FAQs:", error);
+      return res.status(500).json({ message: "Error al buscar las FAQs.", error });
     }
-  } catch (error) {
-    console.error("Error al buscar FAQs:", error);
-    return res.status(500).json({ message: "Error al buscar las FAQs.", error });
   }
-}
-  
+
 
   // Crear una nueva pregunta frecuente
   async createFAQController(req: Request, res: Response) {

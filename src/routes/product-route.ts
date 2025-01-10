@@ -13,6 +13,9 @@ router.get(
 );
 
 // Obtener un producto por nombre
+router.get("/menu/:name", (req, res, next) => {
+  productController.getMenuItemByName(req, res, next);
+});
 
 //crear un nuevo producto del menú
 router.post(

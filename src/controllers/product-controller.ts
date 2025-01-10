@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ProductService } from "../services/product-service";
 import { CreateProductItemDTO } from "../DTOs/product/createProductDto";
 
@@ -19,9 +19,14 @@ export class ProductController {
     }
   }
 
-  async getMenuItemByName(req: Request, res: Response) {
+  async getMenuItemByName(req: Request, res: Response, next: NextFunction): Promise<Response> {
     try {
       const { name } = req.params;
+      if (!name) {
+        return res.status(400).json(
+          { error: "El nombre del producto es requerido" });
+      }
+      console.log("producto: ", name);
       const product = await this.productService.getMenuItemByName(name);
 
       if (!product) {
@@ -31,7 +36,7 @@ export class ProductController {
       return res.status(200).json(product);
     } catch (error) {
       console.error("[ProductController] - Error en getMenuItemByName:", error);
-      res.status(500).json({ error: "Error al buscar el producto" });
+      return res.status(500).json({ error: "Error al buscar el producto" });
     }
   }
 
