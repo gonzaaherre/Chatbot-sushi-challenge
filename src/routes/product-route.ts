@@ -13,7 +13,7 @@ router.get(
 );
 
 // Obtener un producto por nombre
-router.get("/menu/:name", (req, res, next) => {
+router.post("/menu/name", (req, res, next) => {
   productController.getMenuItemByName(req, res, next);
 });
 

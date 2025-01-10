@@ -36,7 +36,12 @@ export class ProductService {
       }
 
       console.info(`producto encontrado:`, name);
-      return item;
+      const respuesta = {
+        name: item.name,
+        id: item._id
+      };
+
+      return respuesta;
     } catch (error) {
       console.error(`error al buscar producto por nombre `, name, error);
       throw new Error(

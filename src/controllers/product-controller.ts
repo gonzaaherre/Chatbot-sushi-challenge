@@ -21,7 +21,7 @@ export class ProductController {
 
   async getMenuItemByName(req: Request, res: Response, next: NextFunction): Promise<Response> {
     try {
-      const { name } = req.params;
+      const { name } = req.body;
       if (!name) {
         return res.status(400).json(
           { error: "El nombre del producto es requerido" });
