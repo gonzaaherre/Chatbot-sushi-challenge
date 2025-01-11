@@ -38,7 +38,8 @@ export class ProductService {
       console.info(`producto encontrado:`, name);
       const respuesta = {
         name: item.name,
-        id: item._id
+        id: item._id,
+        price: item.price,
       };
 
       return respuesta;
