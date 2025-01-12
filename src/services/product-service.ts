@@ -6,7 +6,7 @@ export class ProductService {
     try {
       console.info(" consulta de todos los productos en el service");
       const items = await ProductItem.find().select(
-        "name description price -_id"
+        "name description price"
       );
 
       if (!items || items.length === 0) {

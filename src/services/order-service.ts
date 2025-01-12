@@ -29,6 +29,7 @@ export class OrderService {
 
   // Crear una nueva orden
   async createOrder(orderData: CreateOrderDTO) {
+    console.log("creando orden", orderData);
     const productIds = orderData.products.map((item) => item.product);
 
     const products = await Product.find({ _id: { $in: productIds } });
