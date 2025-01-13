@@ -14,7 +14,7 @@ export class ProductService {
         return [];
       }
 
-      console.info(`productos encontrados: ${items}`);
+      //console.info(`productos encontrados: ${items}`);
       return items;
     } catch (error) {
       console.error("Error al obtener los productos del menú", error);
