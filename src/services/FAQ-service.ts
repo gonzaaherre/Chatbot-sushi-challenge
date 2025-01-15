@@ -3,8 +3,13 @@ import FAQ from "../models/faq-model";
 export class FAQService {
   async getAllFAQs() {
     try {
+      console.log("service getAllFAQs");
       const faqs = await FAQ.find();
       console.log("FAQs: ", faqs);
+      if (!faqs) {
+        throw new Error("No FAQs found");
+
+      }
       return faqs;
     } catch (error) {
       console.error("Error getting FAQ: ", error);
@@ -37,7 +42,7 @@ export class FAQService {
     try {
       let long = 3;
       console.log("Palabras clave originales:", keywords);
-  
+
       const normalizedKeywords = keywords
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "") //normalizar y eliminar tildes
@@ -45,29 +50,29 @@ export class FAQService {
         .replace(/[\?\s]+/g, " ") // Reemplazar signos de interrogación y espacios por un solo espacio
         .split(/\s+/); //dividir por espacios
 
-      if(normalizedKeywords.length === 1){
+      if (normalizedKeywords.length === 1) {
         long = 1;
       }
       console.log("Palabras clave normalizadas:", normalizedKeywords);
-  
+
       const faqs = await FAQ.find(); // Obtener todas las FAQs
-      
+
       const matchingFAQs = faqs.filter((faq: any) => {
         const normalizedQuestion = faq.question
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
-          //busco palabra por palabra con el includes
+        //busco palabra por palabra con el includes
         const matches = normalizedKeywords.filter((keyword) =>
           normalizedQuestion.includes(keyword)
         );
         return matches.length >= long; //si hay al menos 2 coincidencias
       });
-  
+
       if (matchingFAQs.length === 0) {
         throw new Error("No se encontraron FAQs relevantes.");
       }
-  
+
       console.log("FAQs encontradas:", matchingFAQs);
       return matchingFAQs;
     } catch (error) {

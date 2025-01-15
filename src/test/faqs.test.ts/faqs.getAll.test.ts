@@ -113,14 +113,14 @@ describe("FAQController ", () => {
 
         it("Debería retornar un error si hay un fallo al obtener las preguntas frecuentes", async () => {
             // Mock de la función para simular un error
-            (faqItem.find as jest.Mock).mockRejectedValueOnce(new Error("Error al obtener FAQs"));
+            (faqItem.find as jest.Mock).mockRejectedValueOnce(new Error("Database error"));
 
             const response = await supertest(app).get("/api/faq");
 
             expect(response.status).toBe(500);
             expect(response.body).toEqual({
                 message: "Error al obtener las preguntas frecuentes.",
-                error: expect.any(Error),
+                error: "Database error",
             });
         });
     });

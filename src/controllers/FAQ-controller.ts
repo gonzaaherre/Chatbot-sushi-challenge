@@ -15,9 +15,11 @@ export class FAQController {
       const faqs = await this.faqService.getAllFAQs();
       res.status(200).json(faqs);
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Error al obtener las preguntas frecuentes.", error });
+      console.error("Error obteniendo FAQs:", error);
+      res.status(500).json({
+        message: "Error al obtener las preguntas frecuentes.",
+        error: error instanceof Error ? error.message : error,
+      });
     }
   }
 
