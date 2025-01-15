@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./config/dbClient";
+import { connectDB } from "./config/dbClient";
 import routes from "./routes/index";
 import cors = require("cors");
 

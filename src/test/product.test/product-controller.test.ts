@@ -1,8 +1,10 @@
 import supertest from "supertest";
+import { connectDB, disconnectDB } from "../../config/dbClient";
 import app from "../../app"; // Importa tu aplicación
 import ProductItem from "../../models/product-model"; // Modelo de producto
 
-jest.mock("../models/product-model", () => ({
+jest.mock("../../models/product-model", () => ({
+
     find: jest.fn().mockReturnThis(), // Simula el método `find` y devuelve `this` para poder encadenar el `.select()`
     select: jest.fn().mockResolvedValue([
         {
@@ -45,6 +47,15 @@ jest.mock("../models/product-model", () => ({
 }));
 
 describe("ProductController", () => {
+    // Conectar a la base de datos antes de todos los tests
+    beforeAll(async () => {
+        await connectDB();
+    });
+
+    // Desconectar de la base de datos después de todos los tests
+    afterAll(async () => {
+        await disconnectDB();
+    });
     afterEach(() => {
         jest.clearAllMocks(); // Limpia los mocks después de cada test
     });

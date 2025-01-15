@@ -1,4 +1,5 @@
 import supertest from "supertest";
+import { connectDB, disconnectDB } from "../../config/dbClient";
 import app from "../../app"; // Importa tu aplicación
 import ProductItem from "../../models/product-model"; // Modelo de producto
 
@@ -7,6 +8,15 @@ jest.mock("../../models/product-model", () => ({
 }));
 
 describe("ProductController - POST /menu/name", () => {
+    // Conectar a la base de datos antes de todos los tests
+    beforeAll(async () => {
+        await connectDB();
+    });
+
+    // Desconectar de la base de datos después de todos los tests
+    afterAll(async () => {
+        await disconnectDB();
+    });
     afterEach(() => {
         jest.clearAllMocks(); // Limpia los mocks después de cada test
     });
@@ -41,6 +51,8 @@ describe("ProductController - POST /menu/name", () => {
         });
     });
 
+
+
     it("debería retornar un error 404 si el producto no existe", async () => {
         (ProductItem.findOne as jest.Mock).mockResolvedValue(null);
 
@@ -51,6 +63,8 @@ describe("ProductController - POST /menu/name", () => {
         expect(response.status).toBe(404);
         expect(response.body).toEqual({ error: "Producto no encontrado" });
     });
+
+
 
     it("debería retornar un error 500 si ocurre un error en el servidor", async () => {
         (ProductItem.findOne as jest.Mock).mockRejectedValue(
