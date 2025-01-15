@@ -1,12 +1,12 @@
 export default {
-    preset: 'ts-jest', // Usa ts-jest como preset
-    testEnvironment: 'node', // Entorno de prueba
-    moduleFileExtensions: ['ts', 'js', 'json', 'node'], // Extensiones soportadas
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+    moduleFileExtensions: ['ts', 'js', 'json', 'node'],
     transform: {
-        '^.+\\.ts$': 'ts-jest', // Transforma archivos TypeScript usando ts-jest
+        '^.+\\.ts$': 'ts-jest',
     },
     moduleNameMapper: {
-        '^@/(.*)$': '<rootDir>/src/$1', // Alias para resolver imports relativos
+        '^@/(.*)$': '<rootDir>/src/$1',
     },
-    transformIgnorePatterns: ['/node_modules/'], // Ignora transformación en node_modules
+    transformIgnorePatterns: ['/node_modules/'],
 };

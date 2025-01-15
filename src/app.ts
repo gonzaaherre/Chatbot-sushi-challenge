@@ -10,10 +10,12 @@ const app = express();
 //levantamos el servidor
 app.use(cors());
 try {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
+  if (process.env.NODE_ENV !== "test") {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  }
 } catch (error) {
   console.error("Error al iniciar el servidor:", error);
 }
