@@ -32,7 +32,7 @@ export class ProductService {
 
       if (!item) {
         console.warn(`producto no encontrado: `, name);
-        throw new Error(`Producto con nombre '${name}' no encontrado.`);
+        throw { status: 404, message: `Producto con nombre '${name}' no encontrado.` };
       }
 
       console.info(`producto encontrado:`, name);
@@ -43,7 +43,10 @@ export class ProductService {
       };
 
       return respuesta;
-    } catch (error) {
+    } catch (error: any) {
+      if (error.status === 404) {
+        throw error; // Re-lanza errores específicos para ser manejados en el controlador.
+      }
       console.error(`error al buscar producto por nombre `, name, error);
       throw new Error(
         "No se pudo obtener el producto. Por favor, intenta nuevamente."

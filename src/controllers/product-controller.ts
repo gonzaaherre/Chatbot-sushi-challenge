@@ -20,21 +20,19 @@ export class ProductController {
   }
 
   async getMenuItemByName(req: Request, res: Response, next: NextFunction): Promise<Response> {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json(
+        { error: "El nombre del producto es requerido" });
+    }
     try {
-      const { name } = req.body;
-      if (!name) {
-        return res.status(400).json(
-          { error: "El nombre del producto es requerido" });
-      }
-      console.log("producto: ", name);
       const product = await this.productService.getMenuItemByName(name);
-
-      if (!product) {
+      return res.status(200).json(product);
+    } catch (error: any) {
+      if (error.status === 404) {
+        console.warn("[ProductController] - Producto no encontrado:", error.message);
         return res.status(404).json({ error: "Producto no encontrado" });
       }
-
-      return res.status(200).json(product);
-    } catch (error) {
       console.error("[ProductController] - Error en getMenuItemByName:", error);
       return res.status(500).json({ error: "Error al buscar el producto" });
     }
