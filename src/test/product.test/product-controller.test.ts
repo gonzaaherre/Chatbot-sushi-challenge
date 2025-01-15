@@ -1,6 +1,6 @@
 import supertest from "supertest";
-import app from "../app"; // Importa tu aplicación
-import ProductItem from "../models/product-model"; // Modelo de producto
+import app from "../../app"; // Importa tu aplicación
+import ProductItem from "../../models/product-model"; // Modelo de producto
 
 jest.mock("../models/product-model", () => ({
     find: jest.fn().mockReturnThis(), // Simula el método `find` y devuelve `this` para poder encadenar el `.select()`
