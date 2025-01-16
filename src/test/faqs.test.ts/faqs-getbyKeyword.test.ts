@@ -4,7 +4,7 @@ import { connectDB, disconnectDB } from '../../config/dbClient';
 import supertest from 'supertest';
 
 jest.mock("../../models/faq-model", () => ({
-    find: jest.fn().mockResolvedValue([  // Mock de la función find de Mongoose
+    find: jest.fn().mockResolvedValue([  //simulamos la db
         {
             "_id": "677ade022ade576368e2fea4",
             "question": "¿Cuáles son los horarios del local tienen abiertos abierto?",
@@ -24,15 +24,15 @@ describe("FAQController ", () => {
     });
 
     afterEach(() => {
-        jest.clearAllMocks();  // Limpia los mocks después de cada test
-    });
+        jest.clearAllMocks();
+    });//sin esto los tests siguien corriendo una vez terminado
 
     describe("GET /faq", () => {
         it("Debería retornar la pregunta frecuente correcta", async () => {
             const response = await supertest(app).get("/api/faq");
 
             expect(response.status).toBe(200);
-            expect(response.body).toEqual([  // Verifica que se devuelva la FAQ esperada
+            expect(response.body).toEqual([
                 {
                     "_id": "677ade022ade576368e2fea4",
                     "question": "¿Cuáles son los horarios del local tienen abiertos abierto?",
@@ -49,11 +49,10 @@ describe("FAQController ", () => {
             const response = await supertest(app).get("/api/faq");
 
             expect(response.status).toBe(200);
-            expect(response.body).toEqual([]);  // Verifica que se devuelva un array vacío
+            expect(response.body).toEqual([]);//array vacio
         });
 
         it("Debería retornar un error si hay un fallo al obtener las preguntas frecuentes", async () => {
-            // Mock de la función para simular un error
             (faqItem.find as jest.Mock).mockRejectedValueOnce(new Error("Database error"));
 
             const response = await supertest(app).get("/api/faq");

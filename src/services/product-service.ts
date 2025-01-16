@@ -45,7 +45,7 @@ export class ProductService {
       return respuesta;
     } catch (error: any) {
       if (error.status === 404) {
-        throw error; // Re-lanza errores específicos para ser manejados en el controlador.
+        throw error;//esto es para el controllador
       }
       console.error(`error al buscar producto por nombre `, name, error);
       throw new Error(

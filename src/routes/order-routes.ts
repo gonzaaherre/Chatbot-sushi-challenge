@@ -4,9 +4,9 @@ import { OrderController } from "../controllers/order-controller";
 const router = Router();
 const orderController = new OrderController();
 
-// Obtener todos los pedidos
+//Obtener todos los pedidos
 router.get("/orders", orderController.getAllOrders.bind(orderController));
-
+//obtener pedido por id
 router.get("/orders/:id", orderController.getOrderById.bind(orderController));
 
 // Crear una nueva orden

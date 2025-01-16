@@ -23,12 +23,12 @@ export class OrderController {
     try {
       const { id } = req.params;
 
-      // Validar ID
+      // Validar id
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: 'ID inválido' });
       }
 
-      // Obtener orden por ID
+      //buscamos id
       const order = await this.orderService.getOrderById(id);
 
       // Si no se encuentra la orden
@@ -39,9 +39,8 @@ export class OrderController {
       // Responder con la orden
       res.status(200).json(order);
     } catch (error) {
-      // Manejar errores y pasarlos al middleware de manejo de errores
       console.error('Error obteniendo orden por ID:', error);
-      next(error);  // Esto pasará el error al middleware de manejo de errores
+      next(error);
     }
   }
 

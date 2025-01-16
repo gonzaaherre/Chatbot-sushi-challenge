@@ -30,7 +30,7 @@ const orderSchema = new Schema(
       default: "pending",
     },
   },
-  { timestamps: true } // createdAt y updatedAt automáticos
+  { timestamps: true } //createdAt y updatedAt automaticos
 );
 
 const Order = mongoose.model<Order>("Order", orderSchema);

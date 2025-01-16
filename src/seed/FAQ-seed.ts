@@ -104,9 +104,9 @@ const seedFAQs = async () => {
 
 async function seedOrders() {
   try {
-    // Obtener productos existentes
+    //Obtener productos existentes
     const products = await product.find();
-    // Crear órdenes con productos aleatorios
+    //crear con cualquier product
     const ordersData = [
       {
         products: [
@@ -122,7 +122,7 @@ async function seedOrders() {
         status: "completed",
       },
     ];
-    // Limpiar órdenes existentes
+    //limpiar ordenes existentes
     await order.deleteMany({});
     console.log("Órdenes existentes eliminadas.");
 

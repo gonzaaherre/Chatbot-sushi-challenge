@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import { connectDB, disconnectDB } from "../../config/dbClient";
-import app from "../../app"; // Importa tu aplicación
-import Order from "../../models/order-model"; // Importa el modelo de Order
+import app from "../../app";
+import Order from "../../models/order-model";
 
 jest.mock("../../models/order-model", () => ({
     find: jest.fn().mockImplementation(() => ({

@@ -19,19 +19,18 @@ export class OrderService {
     try {
       console.log('Obteniendo pedido por ID:', id);
 
-      // Buscar la orden en la base de datos
+      //buscar la orden en la base de datos
       const order = await Order.findById(id).populate('products.product');
 
       if (!order) {
-        return null;  // Si no se encuentra la orden, devolver null
+        return null;  //si no se encuentra la orden, devolver null
       }
 
       console.log('Orden encontrada:', order);
       return order;
     } catch (error) {
-      // Capturar y manejar errores
       console.error('Error en getOrderById:', error);
-      throw new Error('Error al obtener la orden');  // Lanzar un error para ser capturado por el controlador
+      throw new Error('Error al obtener la orden');
     }
   }
 

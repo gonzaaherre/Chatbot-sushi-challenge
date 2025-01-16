@@ -13,6 +13,6 @@ export const connectDB = async () => {
   }
 };
 
-export const disconnectDB = async () => {
+export const disconnectDB = async () => {//metodo para los test
   await mongoose.connection.close();
 };
