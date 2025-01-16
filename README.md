@@ -34,8 +34,16 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
     docker-compose up
 
     Una vez que el contenedor esté en ejecución, puedes acceder a la interfaz de mongo-express para ver la base de datos:
+    nombre contenedor
+    chatbot-sushi-pruebatecnica
+    chatbot_mongo_express -> http://localhost:8081 interfaz de mongo
+    chatbot_mongodb -> base de dato
 
     URL de acceso: http://localhost:8081
+
+    credenciales: 
+    user: admin
+    clave: pass
     
 ## Instalar Dependencias
 
@@ -64,3 +72,11 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
 
     Ejecuta el comando:
     npm test
+
+## preguntas que puede responder el bot
+¿Qué tipos de sushi tienen?	Responde con el menú de sushi disponible.
+¿Cuáles son los horarios del local?	Responde con los horarios de apertura y cierre del local.
+¿Puedo hacer un pedido en línea?	Responde con la opción de realizar un pedido online.
+¿Tienen opciones para vegetarianos?	Responde con las opciones vegetarianas disponibles en el menú.
+¿Realizan entregas a domicilio?	Responde si tienen o no servicio de entrega a domicilio.
+¿Cuánto tarda la entrega?	Responde con el tiempo estimado para la entrega.
