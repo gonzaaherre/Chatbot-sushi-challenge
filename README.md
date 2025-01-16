@@ -42,3 +42,25 @@ Instalar Dependencias
     En la terminal, ejecuta:
     npm install
     Esto instalará todas las dependencias necesarias para el proyecto.
+
+Cargar Datos Iniciales en la Base de Datos
+    
+    1. En una terminal, ejecuta el siguiente comando para cargar los datos de prueba:
+    npx ts-node src/seed/FAQ-seed.ts
+    2. Esto cargará el menú, FAQs y algunos pedidos de ejemplo en la base de datos.
+    3. una vez instalada la semilla, entrar a http://localhost:8081 para ver la interfaz en mongo-express y poder ver los datos
+
+Iniciar el Servidor
+
+    Para iniciar el servidor, usa el comando:
+    npm run start
+    El backend estará disponible en http://localhost:3000.
+
+Testing
+
+    Para ejecutar los tests implementados:
+
+    Abre una terminal en el directorio del proyecto.
+
+    Ejecuta el comando:
+    npm test
