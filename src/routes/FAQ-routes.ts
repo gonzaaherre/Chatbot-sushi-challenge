@@ -20,6 +20,8 @@ router.get("/faq", faqController.getAllFAQsController.bind(faqController));
 //   faqController.getFAQByKeywordController.bind(faqController)
 // );
 
+
+//pregunta por palabra clave
 router.post("/faq/search", (req, res, next) => {
   faqController.getFAQByKeywordController(req, res, next);
 });

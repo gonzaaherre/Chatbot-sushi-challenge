@@ -73,10 +73,41 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
     Ejecuta el comando:
     npm test
 
-## preguntas que puede responder el bot
+## que puede responder el bot
+    preguntas frecuentes:
     ¿Qué tipos de sushi tienen?	Responde con el menú de sushi disponible.
     ¿Cuáles son los horarios del local?	Responde con los horarios de apertura y cierre del local.
     ¿Puedo hacer un pedido en línea?	Responde con la opción de realizar un pedido online.
     ¿Tienen opciones para vegetarianos?	Responde si tienen o no en ese momento.
     ¿Realizan entregas a domicilio?	Responde si tienen o no servicio de entrega a domicilio.
     ¿Cuánto tarda la entrega?	Responde con el tiempo estimado para la entrega.
+
+    menu:
+    -¿Qué tienen en el menú?
+    -Muéstrame el menú
+
+    pedido
+    esctructura basica para realizar un pedido
+    quiero + cantidad de producto + nombre producto 
+    ejemplo
+    -quiero 1 roll Tempura
+    -quiero 1 roll temopura, 1 sashimi de atun
+
+    estructura para eliminar un prod del pedido
+    quiero eliminar + product
+    ejemplo
+    -quiero eliminar sashimi de atun
+    o 
+    -eliminar sashimi de atun
+
+    estructura para modificar un producto del pedido
+    modificar + cantidad a modificar + nombre producto
+    ejemplo
+    -modificar 1 sashimi de atun 
+    -quiero modificar 1 sashimi de atun
+
+    para ver pedido en el momento
+    -ver pedido 
+
+    para finalizar un pedido:
+    -finalizar pedido
