@@ -17,13 +17,21 @@ export class OrderService {
 
   async getOrderById(id: string) {
     try {
-      console.log("obteniendo pedido por id");
-      const order = await Order.findById(id).populate("products.product");
-      console.log(order);
+      console.log('Obteniendo pedido por ID:', id);
+
+      // Buscar la orden en la base de datos
+      const order = await Order.findById(id).populate('products.product');
+
+      if (!order) {
+        return null;  // Si no se encuentra la orden, devolver null
+      }
+
+      console.log('Orden encontrada:', order);
       return order;
     } catch (error) {
-      console.log(error);
-      throw error;
+      // Capturar y manejar errores
+      console.error('Error en getOrderById:', error);
+      throw new Error('Error al obtener la orden');  // Lanzar un error para ser capturado por el controlador
     }
   }
 
