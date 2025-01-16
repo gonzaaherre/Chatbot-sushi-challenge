@@ -28,6 +28,7 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
         Copia y pega el contenido del archivo .env.example proporcionado.
 
 ## Levantar el Contenedor de la Base de Datos
+    encender docker desktop
 
     Abre una terminal y ejecuta el siguiente comando:
 
@@ -42,8 +43,8 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
     URL de acceso: http://localhost:8081
 
     credenciales: 
-    user: admin
-    clave: pass
+    username: admin
+    password: pass
     
 ## Instalar Dependencias
 
