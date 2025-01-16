@@ -111,3 +111,23 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
 
     para finalizar un pedido:
     -finalizar pedido
+
+## Endpint disponibles
+    http://localhost:3000/api/faq         | GET  | Obtiene las preguntas frecuentes (FAQs) del sistema.
+    http://localhost:3000/api/faq/search  | POST | Busca una pregunta segun la palabra que venga en el body
+    ejemplo de body: 
+    {
+    "keywords":"Cuáles son los horarios del local"
+    }
+    http://localhost:3000/api/menu           | GET  | Obtiene el menú de sushi disponible.
+    http://localhost:3000/api/menu/name       |POST| obtiene el menú de sushi disponible por nombre segun el body
+    ejemplo de body:
+    {
+    "name": "sashimi"
+    }
+
+
+    http://localhost:3000/api/orders         |GET   | obtiene todas las ordenes
+    http://localhost:3000/api/orders/idOrden  |GET  | obtiene una orden segun el id de la orden
+    http://localhost:3000/api/orders          |POST | crea una nueva orden
+    
