@@ -74,9 +74,9 @@ Repositorio en GitHub: https://github.com/gonzaaherre/Chatbot-sushi-challenge
     npm test
 
 ## preguntas que puede responder el bot
-¿Qué tipos de sushi tienen?	Responde con el menú de sushi disponible.
-¿Cuáles son los horarios del local?	Responde con los horarios de apertura y cierre del local.
-¿Puedo hacer un pedido en línea?	Responde con la opción de realizar un pedido online.
-¿Tienen opciones para vegetarianos?	Responde con las opciones vegetarianas disponibles en el menú.
-¿Realizan entregas a domicilio?	Responde si tienen o no servicio de entrega a domicilio.
-¿Cuánto tarda la entrega?	Responde con el tiempo estimado para la entrega.
+    ¿Qué tipos de sushi tienen?	Responde con el menú de sushi disponible.
+    ¿Cuáles son los horarios del local?	Responde con los horarios de apertura y cierre del local.
+    ¿Puedo hacer un pedido en línea?	Responde con la opción de realizar un pedido online.
+    ¿Tienen opciones para vegetarianos?	Responde si tienen o no en ese momento.
+    ¿Realizan entregas a domicilio?	Responde si tienen o no servicio de entrega a domicilio.
+    ¿Cuánto tarda la entrega?	Responde con el tiempo estimado para la entrega.
