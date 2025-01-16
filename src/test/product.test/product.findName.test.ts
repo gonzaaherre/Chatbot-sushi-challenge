@@ -1,24 +1,24 @@
 import supertest from "supertest";
 import { connectDB, disconnectDB } from "../../config/dbClient";
-import app from "../../app"; // Importa tu aplicación
-import ProductItem from "../../models/product-model"; // Modelo de producto
+import app from "../../app";
+import ProductItem from "../../models/product-model";
 
 jest.mock("../../models/product-model", () => ({
-    findOne: jest.fn(), // Simula el método `findOne`
+    findOne: jest.fn(),
 }));
 
 describe("ProductController - POST /menu/name", () => {
-    // Conectar a la base de datos antes de todos los tests
+    //conectar a la base de datos antes de todos los tests
     beforeAll(async () => {
         await connectDB();
     });
 
-    // Desconectar de la base de datos después de todos los tests
+    //desconectar de la base de datos después de todos los tests
     afterAll(async () => {
         await disconnectDB();
     });
     afterEach(() => {
-        jest.clearAllMocks(); // Limpia los mocks después de cada test
+        jest.clearAllMocks(); //limpia los mocks después de cada test
     });
 
     it("debería retornar un producto cuando se envía un nombre válido", async () => {

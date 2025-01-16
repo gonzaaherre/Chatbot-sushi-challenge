@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import FAQ from "../models/faq-model";
 import order from "../models/order-model";
-import connectDB from "../config/dbClient";
+import { connectDB } from "../config/dbClient";
 import product from "../models/product-model";
 
 const seedFAQs = async () => {

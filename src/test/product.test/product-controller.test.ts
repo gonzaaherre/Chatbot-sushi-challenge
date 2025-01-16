@@ -1,11 +1,11 @@
 import supertest from "supertest";
 import { connectDB, disconnectDB } from "../../config/dbClient";
-import app from "../../app"; // Importa tu aplicación
-import ProductItem from "../../models/product-model"; // Modelo de producto
+import app from "../../app";
+import ProductItem from "../../models/product-model";
 
 jest.mock("../../models/product-model", () => ({
 
-    find: jest.fn().mockReturnThis(), // Simula el método `find` y devuelve `this` para poder encadenar el `.select()`
+    find: jest.fn().mockReturnThis(),
     select: jest.fn().mockResolvedValue([
         {
             _id: "677ade022ade576368e2feaa",
@@ -43,21 +43,21 @@ jest.mock("../../models/product-model", () => ({
             description: "Empanaditas japonesas rellenas de cerdo y vegetales.",
             price: 600
         }
-    ]), // Simula la respuesta de `select()`
+    ]),
 }));
 
 describe("ProductController", () => {
-    // Conectar a la base de datos antes de todos los tests
+    //conectar a la base de datos antes de todos los tests
     beforeAll(async () => {
         await connectDB();
     });
 
-    // Desconectar de la base de datos después de todos los tests
+    //desconectar de la base de datos después de todos los tests
     afterAll(async () => {
         await disconnectDB();
     });
     afterEach(() => {
-        jest.clearAllMocks(); // Limpia los mocks después de cada test
+        jest.clearAllMocks(); //limpia los mocks después de cada test
     });
 
     describe("GET /menu", () => {
@@ -106,7 +106,7 @@ describe("ProductController", () => {
         });
 
         it("should return an empty array if no products found", async () => {
-            // Modificamos el mock para simular que no hay productos
+
             (ProductItem.find as jest.Mock).mockReturnValueOnce({
                 select: jest.fn().mockResolvedValue([]),
             });
@@ -114,7 +114,7 @@ describe("ProductController", () => {
             const response = await supertest(app).get("/api/menu");
 
             expect(response.status).toBe(200);
-            expect(response.body).toEqual([]); // Verifica que se devuelva un array vacío
+            expect(response.body).toEqual([]);
         });
     });
 });
