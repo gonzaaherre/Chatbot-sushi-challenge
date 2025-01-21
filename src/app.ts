@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/dbClient";
 import routes from "./routes/index";
 import cors = require("cors");
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger/swagger";
+
 
 dotenv.config();
 
@@ -19,6 +22,8 @@ try {
 } catch (error) {
   console.error("Error al iniciar el servidor:", error);
 }
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //conectar a la base de datos
 connectDB();

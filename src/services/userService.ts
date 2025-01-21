@@ -1,50 +1,50 @@
-/*
-import User from "../models/user-model";
-import { CreateUserDto } from "../DTOs/user/create-userdto";
 
-class UserService {
-  createUser = async (userData: typeof CreateUserDto) => {
-    const { name, email, password } = userData;
+// import User from "../models/user-model";
+// import { createUserDTO } from "../DTOs/user/createUserDTO";
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      throw new Error("User already exists");
-    }
+// class UserService {
+//   createUser = async (userData: typeof createUserDTO) => {
+//     const { name, email, password } = userData;
 
-    const user = new User({
-      name,
-      email,
-      password,
-    });
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       throw new Error("User already exists");
+//     }
 
-    await user.save();
+//     const user = new User({
+//       name,
+//       email,
+//       password,
+//     });
 
-    return user;
-  };
+//     await user.save();
 
-
-  async getUsers() {
-    return User.find();
-  }
-
-  // Obtener un usuario por ID
-  async getUserById(id: string) {
-    return User.findById(id);
-  }
+//     return user;
+//   };
 
 
-  async updateUser(
-    id: string,
-    updateData: { name?: string; email?: string; password?: string }
-  ) {
-    return User.findByIdAndUpdate(id, updateData, { new: true });
-  }
+//   async getUsers() {
+//     return User.find();
+//   }
 
-  // Eliminar un usuario por ID
-  async deleteUser(id: string) {
-    return User.findByIdAndDelete(id);
-  }
-}
+//   // Obtener un usuario por ID
+//   async getUserById(id: string) {
+//     return User.findById(id);
+//   }
 
-export default new UserService();
-*/
+
+//   async updateUser(
+//     id: string,
+//     updateData: { name?: string; email?: string; password?: string }
+//   ) {
+//     return User.findByIdAndUpdate(id, updateData, { new: true });
+//   }
+
+//   // Eliminar un usuario por ID
+//   async deleteUser(id: string) {
+//     return User.findByIdAndDelete(id);
+//   }
+// }
+
+// export default new UserService();
+
