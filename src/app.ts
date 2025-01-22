@@ -11,7 +11,14 @@ dotenv.config();
 
 const app = express();
 //levantamos el servidor
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: process.env.CORS_METHODS,
+    allowedHeaders: process.env.CORS_HEADERS
+  })
+);
+
 try {
   if (process.env.NODE_ENV !== "test") {
     const PORT = process.env.PORT || 3000;
