@@ -66,6 +66,31 @@ router.get(
   productController.getAllProductItems.bind(productController)
 );
 
+/**
+ * @swagger
+ * /menu/name:
+ *   post:
+ *     summary: Obtener un producto por nombre
+ *     tags: [Product]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Nombre del producto
+ *     responses:
+ *       200:
+ *         description: Producto obtenido correctamente
+ *         content:
+ *           application/json:             
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ */
+
 // Obtener un producto por nombre
 router.post("/menu/name", (req, res, next) => {
   productController.getMenuItemByName(req, res, next);
