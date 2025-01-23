@@ -7,6 +7,60 @@ const router = Router();
 const productController = new ProductController();
 
 // Obtener todos los productos
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       required:
+ *         - _id
+ *         - name
+ *         - description
+ *         - price
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: ID del producto
+ *         name:
+ *           type: string
+ *           description: Nombre del producto
+ *         description:
+ *           type: string
+ *           description: Descripción del producto
+ *         price:
+ *           type: number
+ *           description: Precio del producto
+ *       example:
+ *         _id: "67896e9088c0e71a918eda70"
+ *         name: "Nigiri de salmón"
+ *         description: "Delicado arroz sushi cubierto con una fina lámina de salmón fresco."
+ *         price: 450
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Product
+ *   description: Operaciones relacionadas con los productos
+ */
+
+/**
+ * @swagger
+ * /menu:
+ *   get:
+ *     summary: Obtener todos los productos
+ *     tags: [Product]
+ *     responses:
+ *       200:
+ *         description: Lista de productos obtenida correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ */
 router.get(
   "/menu",
   productController.getAllProductItems.bind(productController)
