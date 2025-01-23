@@ -61,9 +61,11 @@ export class FAQController {
   // Crear una nueva pregunta frecuente
   async createFAQController(req: Request, res: Response) {
     const { question, answer } = req.body;
+    console.log("Nueva pregunta frecuente:", question);
 
     try {
       const newFAQ = await this.faqService.createFAQ(question, answer);
+      console.log("Pregunta frecuente creada:", newFAQ);
       res.status(201).json(newFAQ);
     } catch (error) {
       res

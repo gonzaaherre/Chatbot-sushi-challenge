@@ -81,9 +81,9 @@ router.get("/faq", faqController.getAllFAQsController.bind(faqController));
  *     FAQKeywordSearch:
  *       type: object
  *       required:
- *         - keyword
+ *         - keywords
  *       properties:
- *         keyword:
+ *         keywords:
  *           type: string
  *           description: Palabra clave para buscar en las preguntas frecuentes
  *       example:
@@ -124,6 +124,55 @@ router.post("/faq/search", (req, res, next) => {
 });
 
 // Crear una nueva pregunta frecuente
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     FAQCreation:
+ *       type: object
+ *       required:
+ *         - question
+ *         - answer
+ *       properties:
+ *         question:
+ *           type: string
+ *           description: Pregunta frecuente
+ *         answer:
+ *           type: string
+ *           description: Respuesta a la pregunta frecuente
+ *       example:
+ *         question: "¿Cuáles son los horarios en que el local está abierto?"
+ *         answer: "Estamos abiertos todos los días de 10:00 AM a 10:00 PM."
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: FAQ
+ *   description: Endpoints relacionados con preguntas frecuentes
+ */
+
+/**
+ * @swagger
+ * /faq:
+ *   post:
+ *     summary: Crear una nueva pregunta frecuente
+ *     tags: [FAQ]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/FAQCreation'
+ *     responses:
+ *       201:
+ *         description: Pregunta frecuente creada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/FAQ'
+*/
 router.post(
   "/faq",
   createFAQValidator,
