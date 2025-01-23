@@ -115,6 +115,56 @@ router.get("/orders", orderController.getAllOrders.bind(orderController));
 router.get("/orders/:id", orderController.getOrderById.bind(orderController));
 
 // Crear una nueva orden
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     OrderCreation:
+ *       type: object
+ *       required:
+ *         - products
+ *       properties:
+ *         products:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               product:
+ *                 type: string
+ *                 description: ID del producto
+ *               quantity:
+ *                 type: number
+ *                 description: Cantidad del producto
+ *       example:
+ *         products:
+ *           - product: "67896e9088c0e71a918eda70"
+ *             quantity: 3
+ *           - product: "67896e9088c0e71a918eda71"
+ *             quantity: 1
+ */
+
+
+/**
+ * @swagger
+ * /orders:
+ *   post:
+ *     summary: Crear una nueva orden
+ *     tags: [Order]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/OrderCreation'
+ *     responses:
+ *       201:
+ *         description: Orden creada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+*/
 router.post("/orders", orderController.createOrder.bind(orderController));
 
 export default router;

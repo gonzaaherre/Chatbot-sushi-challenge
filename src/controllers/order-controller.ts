@@ -51,6 +51,7 @@ export class OrderController {
       const newOrder = await this.orderService.createOrder(orderData);
       res.status(201).json(newOrder);
     } catch (error) {
+      console.log(error, "error al crear la orden");
       res.status(500).json({ message: "error al crear la orden" });
     }
   }
