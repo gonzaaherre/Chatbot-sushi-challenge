@@ -97,6 +97,49 @@ router.post("/menu/name", (req, res, next) => {
 });
 
 //crear un nuevo producto del menú
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CreateProduct:
+ *       type: object
+ *       required:
+ *         - name
+ *         - description
+ *         - price
+ *         - category
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Nombre del producto
+ *         description:
+ *           type: string
+ *           description: Descripción del producto
+ *         price:
+ *           type: number
+ *           description: Precio del producto
+ *         category:
+ *           type: string
+ *           description: Categoría del producto
+ */
+
+/**
+ * @swagger
+ * /menu:
+ *   post:
+ *     summary: Crear un nuevo producto del menú
+ *     tags: [Product]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateProduct'
+ *     responses:
+ *       201:
+ *         description: Producto creado correctamente
+ */
 router.post(
   "/menu",
   body("name").isString().notEmpty().withMessage("El nombre es obligatorio"),
